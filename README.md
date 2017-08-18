@@ -20,7 +20,7 @@ These two files will load the CMSSW frameworks and let you set up a CMSSW enviro
 2)  Make sure you have a grid certificate set up in your home directory (These usually go in a .globus directory, same ones that are used to run on CRAB).  If you do not do this, you will not be able to transfer your output files.
 
 
-3)  In your /work/$USER/ area, setup a working CMSSW environment (i.e. commands: 'cmsrel *release*' and 'cmsenv') and clone this repository (using git clone) into it.
+3)  In your /work/$USER/ area, setup a working CMSSW environment (i.e. commands: 'cmsrel *release*' and 'cmsenv') and clone this repository (using git clone) into it.  YOU MUST USE THE /work/ AREA, for some reason condor does not see the home areas.
 
 #Using the code
 Other than this readme, this repo has 5 files.  submit_template.condor should not need to be touched.  run.C can be replaced with your own code you wish to compile and run on condor.  fileList.txt is just an example additional input file.  This setup expects your C code to be have a main() function which takes at least 2 parameters: the job number and total number of jobs (so it runs as './run.exe job totalJobs *other parameters*).  As an output, this file should produce a file called 'output_*jobNumber*.root' in order for the transfer to hadoop work correctly. 
