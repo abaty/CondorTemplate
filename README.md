@@ -22,7 +22,10 @@ These two files will load the CMSSW frameworks and let you set up a CMSSW enviro
 
 3)  In your /work/$USER/ area, setup a working CMSSW environment (i.e. commands: 'cmsrel *release*' and 'cmsenv') and clone this repository (using git clone) into it.  YOU MUST USE THE /work/ AREA, for some reason condor does not see the home areas.
 
-#Using the code
+
+
+Using the code:
+
 Other than this readme, this repo has 5 files.  submit_template.condor should not need to be touched.  run.C can be replaced with your own code you wish to compile and run on condor.  fileList.txt is just an example additional input file.  This setup expects your C code to be have a main() function which takes at least 2 parameters: the job number and total number of jobs (so it runs as './run.exe job totalJobs *other parameters*).  As an output, this file should produce a file called 'output_*jobNumber*.root' in order for the transfer to hadoop work correctly. 
 
 4)In submit.sh edit lines 4,5,6,7.  L4 should be the name of the C++ file containing the main() method.  L5 should be a list of any input files you wish to be transferred along with the executable to the condor node (examples: correction .root tables, lookup tables, etc.).  These files should be fairly small (not full data files!).  You do not need to transfer your entire C++ setup, because your code will be compiled and then transfered as a .exe.  L6 is the total number of jobs you wish to submit.  L7 is a list of other parameters you wish to pass in while running the code (see the last parenthetical on paragraph above).
