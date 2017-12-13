@@ -12,7 +12,7 @@ g++ $MainCFile $(root-config --cflags --libs) -Wall -O2 -o "run.exe"
 
 #grid certificate
 #gets unique user ID for this system, change to your own
-userID=$(quota -u $USER | grep uid | sed 's/.*uid //' | cut -d')' -f1) 
+userID=2150
 echo $userID
 voms-proxy-init -voms cms
 cp /tmp/x509up_u$userID .
